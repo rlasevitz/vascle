@@ -5,7 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vascle</title>
     <style>
-        /* Adicione seus estilos aqui */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+        #board {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.5em;
+        }
+        .tile {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.2em;
+            font-size: 1em;
+        }
+        .correct {
+            background-color: green;
+            color: white;
+        }
+        .present {
+            background-color: yellow;
+            color: black;
+        }
+        .absent {
+            background-color: gray;
+            color: white;
+        }
+        #player-input {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            padding: 0.5em;
+            font-size: 1em;
+        }
+        #message {
+            margin-top: 0.5em;
+            font-size: 1em;
+        }
+        #legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 1em;
+        }
+        #legend span {
+            margin-right: 1em;
+        }
     </style>
 </head>
 <body>
