@@ -48,26 +48,12 @@ let attempts = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("theme").textContent = `Tema: ${selectedTheme}`;
-    createBoard();
+    document.getElementById("attempts").textContent = `Você tem ${attempts} tentativas restantes.`;
 });
-
-function createBoard() {
-    const board = document.getElementById("board");
-    board.innerHTML = '';
-    for (let attempt = 0; attempt < attempts; attempt++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        row.dataset.rowIndex = attempt;
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
-        row.appendChild(cell);
-        board.appendChild(row);
-    }
-}
 
 function checkGuess() {
     const input = document.getElementById("player-input");
-    const guess = input.value.trim();
+    const guess = input.value.trim().toLowerCase();
     const message = document.getElementById("message");
 
     if (guess.length === 0) {
@@ -75,25 +61,11 @@ function checkGuess() {
         return;
     }
 
-    const board = document.getElementById("board");
-    const currentRow = board.querySelector(`[data-row-index="${6 - attempts}"] .cell`);
+    const currentGuess = document.createElement("div");
+    currentGuess.textContent = guess;
+    document.getElementById("board").appendChild(currentGuess);
 
-    let correctCount = 0;
-    for (let i = 0; i < guess.length; i++) {
-        const letter = document.createElement("span");
-        letter.textContent = guess[i];
-        if (i < chosenPlayer.name.length && guess[i].toUpperCase() === chosenPlayer.name[i].toUpperCase()) {
-            letter.classList.add("correct");
-            correctCount++;
-        } else if (chosenPlayer.name.toUpperCase().includes(guess[i].toUpperCase())) {
-            letter.classList.add("present");
-        } else {
-            letter.classList.add("absent");
-        }
-        currentRow.appendChild(letter);
-    }
-
-    if (correctCount === chosenPlayer.name.length && guess.length === chosenPlayer.name.length) {
+    if (guess === chosenPlayer.name.toLowerCase()) {
         message.textContent = "Parabéns! Você acertou!";
         return;
     }
@@ -101,10 +73,13 @@ function checkGuess() {
     attempts--;
     if (attempts === 0) {
         message.textContent = `Fim de jogo! O jogador era ${chosenPlayer.name}.`;
-    } else if (attempts === 3) {
-        message.textContent = `Dica: O jogador jogou na posição: ${chosenPlayer.position}.`;
     } else {
-        message.textContent = `Você tem ${attempts} tentativas restantes.`;
+        if (attempts === 3) {
+            message.textContent = `Dica: O jogador jogou na posição: ${chosenPlayer.position}.`;
+        } else {
+            message.textContent = `Você tem ${attempts} tentativas restantes.`;
+        }
+        document.getElementById("attempts").textContent = `Você tem ${attempts} tentativas restantes.`;
     }
 
     input.value = "";
