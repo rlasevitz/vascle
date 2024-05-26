@@ -1,5 +1,3 @@
-# Parte 1: Criação do conteúdo em segmentos
-part1 = """
 const players = [
     { name: "Roberto Dinamite", decades: "1970, 1980, 1990", position: "Atacante" },
     { name: "Edmundo", decades: "1990, 2000", position: "Atacante" },
@@ -102,9 +100,7 @@ const players = [
     { name: "Rildo", decades: "2010", position: "Atacante" },
     { name: "Ribamar", decades: "2010, 2020", position: "Atacante" }
 ];
-"""
 
-part2 = """
 let chosenPlayer = players[Math.floor(Math.random() * players.length)];
 let attempts = 6;
 
@@ -115,10 +111,16 @@ document.addEventListener("DOMContentLoaded", () => {
 function createBoard() {
     const board = document.getElementById("board");
     board.innerHTML = '';
-    for (let i = 0; i < chosenPlayer.name.length * attempts; i++) {
-        const tile = document.createElement("div");
-        tile.classList.add("tile");
-        board.appendChild(tile);
+    for (let attempt = 0; attempt < attempts; attempt++) {
+        const row = document.createElement("div");
+        row.classList.add("row");
+        row.dataset.rowIndex = attempt;
+        for (let i = 0; i < chosenPlayer.name.length; i++) {
+            const tile = document.createElement("div");
+            tile.classList.add("tile");
+            row.appendChild(tile);
+        }
+        board.appendChild(row);
     }
 }
 
@@ -133,12 +135,12 @@ function checkGuess() {
     }
 
     const board = document.getElementById("board");
-    const tiles = board.children;
-    const currentRow = (6 - attempts) * chosenPlayer.name.length;
+    const currentRow = board.querySelector(`[data-row-index="${6 - attempts}"]`);
+    const tiles = currentRow.children;
 
     let correctCount = 0;
     for (let i = 0; i < chosenPlayer.name.length; i++) {
-        const tile = tiles[currentRow + i];
+        const tile = tiles[i];
         if (i < guess.length) {
             tile.textContent = guess[i];
             if (guess[i] === chosenPlayer.name[i]) {
@@ -173,14 +175,3 @@ function checkGuess() {
     input.value = "";
     input.focus();
 }
-"""
-
-# Parte 2: Juntar as partes em um único arquivo de texto
-full_script = part1 + part2
-
-# Escrever o conteúdo completo em um arquivo
-file_path = "/mnt/data/vascle_script.js"
-with open(file_path, "w") as file:
-    file.write(full_script)
-
-file_path
