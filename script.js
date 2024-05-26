@@ -62,14 +62,18 @@ function checkGuess() {
     }
 
     const currentGuess = document.createElement("div");
-    currentGuess.textContent = guess;
+    currentGuess.className = "guess";
     document.getElementById("board").appendChild(currentGuess);
 
     let correctLetters = '';
     for (let i = 0; i < guess.length; i++) {
+        const letterSpan = document.createElement("span");
+        letterSpan.textContent = guess[i];
         if (chosenPlayer.name.toLowerCase().includes(guess[i])) {
+            letterSpan.classList.add("correct");
             correctLetters += guess[i].toUpperCase() + ' ';
         }
+        currentGuess.appendChild(letterSpan);
     }
 
     if (guess === chosenPlayer.name.toLowerCase()) {
