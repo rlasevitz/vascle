@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vascle</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Adicione seus estilos aqui */
+    </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Vascle</h1>
-        <div id="board"></div>
-        <input type="text" id="player-input" placeholder="Adivinhe o jogador">
-        <button onclick="checkGuess()">Adivinhar</button>
-        <p id="message"></p>
-        <div id="legend">
-            <p><span class="tile correct"></span> Corretas</p>
-            <p><span class="tile present"></span> Presentes mas na posição errada</p>
-            <p><span class="tile absent"></span> Ausentes</p>
-        </div>
+    <h1>Vascle</h1>
+    <h2 id="theme">Tema: </h2>
+    <div id="board"></div>
+    <input type="text" id="player-input" placeholder="Adivinhe o jogador">
+    <button onclick="checkGuess()">Adivinhar</button>
+    <p id="message">Você tem 6 tentativas restantes.</p>
+    <div id="legend">
+        <span class="correct">Corretas</span>
+        <span class="present">Presentes mas na posição errada</span>
+        <span class="absent">Ausentes</span>
     </div>
     <script src="script.js"></script>
 </body>
