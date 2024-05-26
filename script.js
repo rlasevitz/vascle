@@ -3,8 +3,11 @@ const themes = [
         theme: "Brasileirão 2024", 
         players: [
             { name: "Léo Jardim", position: "Goleiro" },
-            { name: "Léo", position: "Meio-campo" },
-            // Adicionar mais jogadores do Brasileirão 2024
+            { name: "Gary Medel", position: "Zagueiro" },
+            { name: "Lucas Piton", position: "Lateral-Esquerdo" },
+            { name: "Dimitri Payet", position: "Meio-Campo" },
+            { name: "Pablo Vegetti", position: "Atacante" },
+            // Adicione mais jogadores conforme necessário
         ] 
     },
     { 
@@ -12,15 +15,21 @@ const themes = [
         players: [
             { name: "Ademir", position: "Atacante" },
             { name: "Barbosa", position: "Goleiro" },
-            // Adicionar mais jogadores do Sul-Americano 1948
+            { name: "Augusto", position: "Zagueiro" },
+            { name: "Jair Rosa Pinto", position: "Meio-Campo" },
+            { name: "Friaça", position: "Atacante" },
+            // Adicione mais jogadores conforme necessário
         ] 
     },
     { 
         theme: "Libertadores 1998", 
         players: [
             { name: "Carlos Germano", position: "Goleiro" },
-            { name: "Romário", position: "Atacante" },
-            // Adicionar mais jogadores da Libertadores 1998
+            { name: "Mauro Galvão", position: "Zagueiro" },
+            { name: "Felipe", position: "Lateral-Esquerdo" },
+            { name: "Juninho Pernambucano", position: "Meio-Campo" },
+            { name: "Donizete", position: "Atacante" },
+            // Adicione mais jogadores conforme necessário
         ] 
     },
 ];
