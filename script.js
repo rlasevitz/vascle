@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createBoard() {
     const board = document.getElementById("board");
-    for (let i = 0; i < 15 * attempts; i++) {
+    board.innerHTML = '';
+    for (let i = 0; i < chosenPlayer.length * attempts; i++) {
         const tile = document.createElement("div");
         tile.classList.add("tile");
         board.appendChild(tile);
@@ -31,18 +32,13 @@ function checkGuess() {
 
     const board = document.getElementById("board");
     const tiles = board.children;
-    const currentRow = (6 - attempts) * 15;
+    const currentRow = (6 - attempts) * chosenPlayer.length;
 
     let correctCount = 0;
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < chosenPlayer.length; i++) {
         const tile = tiles[currentRow + i];
         if (i < guess.length) {
             tile.textContent = guess[i];
-        } else {
-            tile.textContent = "";
-        }
-
-        if (i < chosenPlayer.length) {
             if (guess[i] === chosenPlayer[i]) {
                 tile.classList.add("correct");
                 correctCount++;
@@ -69,4 +65,5 @@ function checkGuess() {
     }
 
     input.value = "";
+    input.focus();
 }
