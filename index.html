@@ -1,72 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vascle</title>
+    <title>Vascracudo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            text-align: center;
+            background-color: #f0f0f0;
         }
         h1 {
             font-size: 3em;
-            margin-bottom: 0.5em;
+            margin-top: 20px;
         }
-        h2 {
+        .input-container {
+            margin-top: 20px;
+        }
+        input[type="text"] {
             font-size: 1.5em;
-            margin-bottom: 1em;
+            padding: 10px;
+            width: 300px;
         }
-        #board {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 1em;
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin-top: 20px;
         }
-        .guess {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0.5em;
+        .feedback {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .hint {
             font-size: 1.2em;
-        }
-        .correct {
-            color: green;
-        }
-        #player-input {
-            margin-top: 1em;
-            margin-bottom: 0.5em;
-            padding: 0.5em;
-            font-size: 1em;
-        }
-        #message {
-            margin-top: 0.5em;
-            font-size: 1em;
-        }
-        #legend {
-            display: flex;
-            justify-content: center;
-            margin-top: 1em;
-        }
-        #legend span {
-            margin-right: 1em;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Vascle</h1>
-    <h2 id="theme">Tema: </h2>
-    <div id="board"></div>
-    <input type="text" id="player-input" placeholder="Adivinhe o jogador">
-    <button onclick="checkGuess()">Adivinhar</button>
-    <p id="attempts">Você tem 6 tentativas restantes.</p>
-    <p id="message"></p>
-    <div id="legend">
-        <span class="correct">Letras corretas</span>
+    <h1>Vascracudo</h1>
+    <div class="input-container">
+        <input type="text" id="guessInput" placeholder="Digite sua adivinhação">
+        <button onclick="makeGuess()">Adivinhar</button>
     </div>
-    <script src="script.js"></script>
+    <div class="feedback" id="feedback"></div>
+    <div class="hint" id="hint"></div>
+
+    <script>
+        const themes = [
+            { theme: "Brasileirão 2024", players: [{name: "Léo Jardim", position: "Goleiro"}, /* adicionar mais jogadores */] },
+            { theme: "Sul-Americano 1948", players: [{name: "Ademir", position: "Atacante"}, /* adicionar mais jogadores */] },
+            { theme: "Libertadores 1998", players: [{name: "Carlos Germano", position: "Goleiro"}, /* adicionar mais jogadores */] },
+        ];
+
+        let selectedTheme = themes[Math.floor(Math.random() * themes.length)];
+        let playerToGuess = selectedTheme.players[Math.floor(Math.random() * selectedTheme.players.length)];
+        let attempts = 0;
+        const maxAttempts = 5;
+
+        document.getElementById('feedback').innerText = `Tema: ${selectedTheme.theme}`;
+
+        function makeGuess() {
+            let guess = document.getElementById('guessInput').value;
+            attempts++;
+            let feedback = "";
+
+            if (guess.toLowerCase() === playerToGuess.name.toLowerCase()) {
+                feedback = `Parabéns, você acertou! O jogador é ${playerToGuess.name}.`;
+                endGame(true);
+            } else {
+                feedback = giveFeedback(guess, playerToGuess.name);
+                if (attempts === 3) {
+                    document.getElementById('hint').innerText = `Dica: A posição do jogador é ${playerToGuess.position}.`;
+                }
+                if (attempts >= maxAttempts) {
+                    feedback = `Você perdeu! O jogador correto era ${playerToGuess.name}.`;
+                    endGame(false);
+                }
+            }
+            document.getElementById('feedback').innerHTML = feedback;
+        }
+
+        function giveFeedback(guess, correctName) {
+            let feedback = "";
+            for (let i = 0; i < guess.length; i++) {
+                if (correctName.toLowerCase().includes(guess[i].toLowerCase())) {
+                    feedback += `<span style="color: green">${guess[i]}</span>`;
+                } else {
+                    feedback += `<span>${guess[i]}</span>`;
+                }
+            }
+            return feedback;
+        }
+
+        function endGame(success) {
+            document.getElementById('guessInput').disabled = true;
+            document.querySelector('button').disabled = true;
+        }
+    </script>
 </body>
 </html>
