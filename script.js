@@ -1,111 +1,54 @@
-const players = [
-    { name: "Roberto Dinamite", decades: "1970, 1980, 1990", position: "Atacante" },
-    { name: "Edmundo", decades: "1990, 2000", position: "Atacante" },
-    { name: "Juninho Pernambucano", decades: "1990, 2000", position: "Meio-campo" },
-    { name: "Romário", decades: "1980, 1990, 2000", position: "Atacante" },
-    { name: "Felipe", decades: "1990, 2000", position: "Meio-campo" },
-    { name: "Ricardo Rocha", decades: "1990", position: "Zagueiro" },
-    { name: "Mazinho", decades: "1980, 1990", position: "Meio-campo" },
-    { name: "Pedrinho", decades: "1990, 2000", position: "Meio-campo" },
-    { name: "Vagner", decades: "1990", position: "Meio-campo" },
-    { name: "Ramon Menezes", decades: "1990, 2000", position: "Meio-campo" },
-    { name: "Carlos Alberto", decades: "2000, 2010", position: "Meio-campo" },
-    { name: "Diego Souza", decades: "2010", position: "Meio-campo" },
-    { name: "Nenê", decades: "2010, 2020", position: "Meio-campo" },
-    { name: "Evander", decades: "2010", position: "Meio-campo" },
-    { name: "Bruno César", decades: "2010", position: "Meio-campo" },
-    { name: "Benítez", decades: "2020", position: "Meio-campo" },
-    { name: "Morato", decades: "2020", position: "Atacante" },
-    { name: "Andrada", decades: "1960, 1970", position: "Goleiro" },
-    { name: "Ramón Rafagnelli", decades: "1940", position: "Zagueiro" },
-    { name: "Pablo Guiñazú", decades: "2010", position: "Meio-campo" },
-    { name: "Maxi López", decades: "2010", position: "Atacante" },
-    { name: "Darío Conca", decades: "2000", position: "Meio-campo" },
-    { name: "Dener", decades: "1990", position: "Atacante" },
-    { name: "Bismarck", decades: "1990", position: "Meio-campo" },
-    { name: "William", decades: "1990", position: "Meio-campo" },
-    { name: "Gian", decades: "1990", position: "Meio-campo" },
-    { name: "Válber", decades: "1990", position: "Meio-campo" },
-    { name: "Assis", decades: "1990", position: "Meio-campo" },
-    { name: "Juninho Paulista", decades: "2000", position: "Meio-campo" },
-    { name: "Léo Lima", decades: "2000", position: "Meio-campo" },
-    { name: "Petkovic", decades: "2000", position: "Meio-campo" },
-    { name: "Morais", decades: "2000", position: "Meio-campo" },
-    { name: "Perdigão", decades: "2000", position: "Meio-campo" },
-    { name: "Dodô", decades: "2000", position: "Atacante" },
-    { name: "Zé Roberto", decades: "2000", position: "Meio-campo" },
-    { name: "Pedro Ken", decades: "2000", position: "Meio-campo" },
-    { name: "Douglas", decades: "2010", position: "Meio-campo" },
-    { name: "Marcinho", decades: "2010", position: "Meio-campo" },
-    { name: "Jhon Cley", decades: "2010", position: "Meio-campo" },
-    { name: "Allan Delon", decades: "2000", position: "Meio-campo" },
-    { name: "Marco Brito", decades: "2000", position: "Atacante" },
-    { name: "Fernandinho", decades: "2000", position: "Meio-campo" },
-    { name: "Tostão", decades: "1970", position: "Meio-campo" },
-    { name: "Germán Cano", decades: "2020", position: "Atacante" },
-    { name: "Thiago Galhardo", decades: "2010", position: "Atacante" },
-    { name: "Tita", decades: "1980", position: "Meio-campo" },
-    { name: "Sorato", decades: "1990", position: "Atacante" },
-    { name: "Giovani", decades: "1990", position: "Meio-campo" },
-    { name: "Rômulo", decades: "2010", position: "Meio-campo" },
-    { name: "Leandro Amaral", decades: "2000", position: "Atacante" },
-    { name: "Aloísio", decades: "1990", position: "Atacante" },
-    { name: "William Matheus", decades: "2010", position: "Lateral-esquerdo" },
-    { name: "Fagner", decades: "2000, 2010", position: "Lateral-direito" },
-    { name: "Alan Kardec", decades: "2000", position: "Atacante" },
-    { name: "Edmílson", decades: "1990, 2000", position: "Zagueiro" },
-    { name: "Júnior Baiano", decades: "1990", position: "Zagueiro" },
-    { name: "Leandro Ávila", decades: "1990", position: "Volante" },
-    { name: "Odvan", decades: "1990", position: "Zagueiro" },
-    { name: "Felipe Bastos", decades: "2010", position: "Meio-campo" },
-    { name: "Élton", decades: "2010", position: "Atacante" },
-    { name: "Euller", decades: "1990", position: "Atacante" },
-    { name: "Luizão", decades: "1990", position: "Atacante" },
-    { name: "Antonio Lopes", decades: "1970, 1980", position: "Treinador" },
-    { name: "Acácio", decades: "1980", position: "Goleiro" },
-    { name: "Donizete Pantera", decades: "1990", position: "Atacante" },
-    { name: "Geovani", decades: "1980", position: "Meio-campo" },
-    { name: "Mazola", decades: "1970", position: "Atacante" },
-    { name: "Roberto", decades: "1980", position: "Atacante" },
-    { name: "Zandonaide", decades: "1970", position: "Meio-campo" },
-    { name: "Ricardo", decades: "1980", position: "Meio-campo" },
-    { name: "Célio Silva", decades: "1990", position: "Zagueiro" },
-    { name: "Rodrigo Caetano", decades: "2000", position: "Meio-campo" },
-    { name: "Leandro Castan", decades: "2020", position: "Zagueiro" },
-    { name: "Pikachu", decades: "2010, 2020", position: "Lateral-direito" },
-    { name: "Riascos", decades: "2010", position: "Atacante" },
-    { name: "Guarín", decades: "2010", position: "Meio-campo" },
-    { name: "Wagner", decades: "2000, 2010", position: "Meio-campo" },
-    { name: "Gilberto", decades: "2000", position: "Atacante" },
-    { name: "Leandro", decades: "2000", position: "Meio-campo" },
-    { name: "Róbson", decades: "1990", position: "Atacante" },
-    { name: "Chico", decades: "1960", position: "Meio-campo" },
-    { name: "Dudu", decades: "1960", position: "Meio-campo" },
-    { name: "João Carlos", decades: "1980", position: "Goleiro" },
-    { name: "Paulinho", decades: "2010, 2020", position: "Atacante" },
-    { name: "Thalles", decades: "2010", position: "Atacante" },
-    { name: "Marrony", decades: "2020", position: "Atacante" },
-    { name: "Caio Monteiro", decades: "2020", position: "Atacante" },
-    { name: "Marcos Júnior", decades: "2010", position: "Meio-campo" },
-    { name: "Luan", decades: "2010", position: "Zagueiro" },
-    { name: "Rafael Silva", decades: "2010", position: "Atacante" },
-    { name: "Yago Pikachu", decades: "2010, 2020", position: "Lateral-direito" },
-    { name: "Martín Silva", decades: "2010", position: "Goleiro" },
-    { name: "Fernando Prass", decades: "2010", position: "Goleiro" },
-    { name: "Hélton", decades: "2000", position: "Goleiro" },
-    { name: "Carlos Germano", decades: "1990, 2000", position: "Goleiro" },
-    { name: "Madson", decades: "2010", position: "Lateral-direito" },
-    { name: "Jorginho", decades: "1980, 1990", position: "Meio-campo" },
-    { name: "William Barbio", decades: "2010", position: "Atacante" },
-    { name: "Rildo", decades: "2010", position: "Atacante" },
-    { name: "Ribamar", decades: "2010, 2020", position: "Atacante" }
-];
+const teams = {
+    "Libertadores 1998": [
+        { name: "Carlos Germano", position: "Goleiro" },
+        { name: "Maricá", position: "Lateral-direito" },
+        { name: "Mauro Galvão", position: "Zagueiro" },
+        { name: "Odvan", position: "Zagueiro" },
+        { name: "Felipe", position: "Lateral-esquerdo" },
+        { name: "Nasa", position: "Volante" },
+        { name: "Luisinho", position: "Meio-campo" },
+        { name: "Juninho Pernambucano", position: "Meio-campo" },
+        { name: "Donizete", position: "Atacante" },
+        { name: "Luizão", position: "Atacante" },
+        { name: "Edmundo", position: "Atacante" }
+    ],
+    "Sul-Americano 1948": [
+        { name: "Barbosa", position: "Goleiro" },
+        { name: "Augusto", position: "Lateral-direito" },
+        { name: "Ely", position: "Zagueiro" },
+        { name: "Rafagnelli", position: "Zagueiro" },
+        { name: "Jorge", position: "Lateral-esquerdo" },
+        { name: "Danilo", position: "Meio-campo" },
+        { name: "Eli", position: "Meio-campo" },
+        { name: "Maneca", position: "Meio-campo" },
+        { name: "Ademir", position: "Atacante" },
+        { name: "Lelé", position: "Atacante" },
+        { name: "Chico", position: "Atacante" }
+    ],
+    "Brasileirão 2024": [
+        { name: "Leo Jardim", position: "Goleiro" },
+        { name: "Puma Rodríguez", position: "Lateral-direito" },
+        { name: "Léo", position: "Zagueiro" },
+        { name: "Robson Bambu", position: "Zagueiro" },
+        { name: "Lucas Piton", position: "Lateral-esquerdo" },
+        { name: "Jair", position: "Volante" },
+        { name: "Praxedes", position: "Meio-campo" },
+        { name: "Galarza", position: "Meio-campo" },
+        { name: "Payet", position: "Atacante" },
+        { name: "Pedro Raul", position: "Atacante" },
+        { name: "Rossi", position: "Atacante" }
+    ]
+};
 
+let themes = Object.keys(teams);
+let selectedTheme = themes[Math.floor(Math.random() * themes.length)];
+let players = teams[selectedTheme];
 let chosenPlayer = players[Math.floor(Math.random() * players.length)];
 let attempts = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
     createBoard();
+    document.getElementById("theme").textContent = `Tema: ${selectedTheme}`;
 });
 
 function createBoard() {
@@ -165,8 +108,6 @@ function checkGuess() {
     if (attempts === 0) {
         message.textContent = `Fim de jogo! O jogador era ${chosenPlayer.name}.`;
     } else if (attempts === 3) {
-        message.textContent = `Dica: O jogador jogou nas décadas: ${chosenPlayer.decades}.`;
-    } else if (attempts === 2) {
         message.textContent = `Dica: O jogador jogou na posição: ${chosenPlayer.position}.`;
     } else {
         message.textContent = `Você tem ${attempts} tentativas restantes.`;
