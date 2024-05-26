@@ -47,8 +47,8 @@ let chosenPlayer = players[Math.floor(Math.random() * players.length)];
 let attempts = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
-    createBoard();
     document.getElementById("theme").textContent = `Tema: ${selectedTheme}`;
+    createBoard();
 });
 
 function createBoard() {
