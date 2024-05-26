@@ -65,19 +65,25 @@ function checkGuess() {
     currentGuess.textContent = guess;
     document.getElementById("board").appendChild(currentGuess);
 
+    let correctLetters = '';
+    for (let i = 0; i < guess.length; i++) {
+        if (chosenPlayer.name.toLowerCase().includes(guess[i])) {
+            correctLetters += guess[i].toUpperCase() + ' ';
+        }
+    }
+
     if (guess === chosenPlayer.name.toLowerCase()) {
         message.textContent = "Parabéns! Você acertou!";
         return;
     }
 
+    message.textContent = `Letras corretas: ${correctLetters.trim()}`;
     attempts--;
     if (attempts === 0) {
         message.textContent = `Fim de jogo! O jogador era ${chosenPlayer.name}.`;
     } else {
         if (attempts === 3) {
-            message.textContent = `Dica: O jogador jogou na posição: ${chosenPlayer.position}.`;
-        } else {
-            message.textContent = `Você tem ${attempts} tentativas restantes.`;
+            message.textContent += ` Dica: O jogador jogou na posição: ${chosenPlayer.position}.`;
         }
         document.getElementById("attempts").textContent = `Você tem ${attempts} tentativas restantes.`;
     }
