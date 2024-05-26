@@ -7,7 +7,6 @@ const themes = [
             { name: "Lucas Piton", position: "Lateral-Esquerdo" },
             { name: "Dimitri Payet", position: "Meio-Campo" },
             { name: "Pablo Vegetti", position: "Atacante" },
-            // Adicione mais jogadores conforme necessário
         ] 
     },
     { 
@@ -18,7 +17,6 @@ const themes = [
             { name: "Augusto", position: "Zagueiro" },
             { name: "Jair Rosa Pinto", position: "Meio-Campo" },
             { name: "Friaça", position: "Atacante" },
-            // Adicione mais jogadores conforme necessário
         ] 
     },
     { 
@@ -29,7 +27,6 @@ const themes = [
             { name: "Felipe", position: "Lateral-Esquerdo" },
             { name: "Juninho Pernambucano", position: "Meio-Campo" },
             { name: "Donizete", position: "Atacante" },
-            // Adicione mais jogadores conforme necessário
         ] 
     },
 ];
@@ -64,11 +61,13 @@ function makeGuess() {
 
 function giveFeedback(guess, correctName) {
     let feedback = "";
+    let nameLower = correctName.toLowerCase();
+    let guessLower = guess.toLowerCase();
     for (let i = 0; i < guess.length; i++) {
-        if (correctName.toLowerCase().includes(guess[i].toLowerCase())) {
-            feedback += `<span style="color: green">${guess[i]}</span>`;
+        if (nameLower.includes(guessLower[i])) {
+            feedback += `<span class="green">${guess[i]}</span>`;
         } else {
-            feedback += `<span>${guess[i]}</span>`;
+            feedback += `<span class="black">${guess[i]}</span>`;
         }
     }
     return feedback;
