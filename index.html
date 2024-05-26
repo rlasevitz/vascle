@@ -10,9 +10,14 @@
     <div class="game-container">
         <h1>Vascle</h1>
         <div id="board"></div>
-        <input type="text" id="player-input" maxlength="15" placeholder="Adivinhe o jogador">
+        <input type="text" id="player-input" placeholder="Adivinhe o jogador">
         <button onclick="checkGuess()">Adivinhar</button>
         <p id="message"></p>
+        <div id="legend">
+            <p><span class="tile correct"></span> Corretas</p>
+            <p><span class="tile present"></span> Presentes mas na posição errada</p>
+            <p><span class="tile absent"></span> Ausentes</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
