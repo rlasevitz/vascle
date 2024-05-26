@@ -58,18 +58,16 @@ function createBoard() {
         const row = document.createElement("div");
         row.classList.add("row");
         row.dataset.rowIndex = attempt;
-        for (let i = 0; i < chosenPlayer.name.length; i++) {
-            const tile = document.createElement("div");
-            tile.classList.add("tile");
-            row.appendChild(tile);
-        }
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        row.appendChild(cell);
         board.appendChild(row);
     }
 }
 
 function checkGuess() {
     const input = document.getElementById("player-input");
-    const guess = input.value.toUpperCase();
+    const guess = input.value.trim();
     const message = document.getElementById("message");
 
     if (guess.length === 0) {
@@ -78,25 +76,21 @@ function checkGuess() {
     }
 
     const board = document.getElementById("board");
-    const currentRow = board.querySelector(`[data-row-index="${6 - attempts}"]`);
-    const tiles = currentRow.children;
+    const currentRow = board.querySelector(`[data-row-index="${6 - attempts}"] .cell`);
 
     let correctCount = 0;
-    for (let i = 0; i < chosenPlayer.name.length; i++) {
-        const tile = tiles[i];
-        if (i < guess.length) {
-            tile.textContent = guess[i];
-            if (guess[i] === chosenPlayer.name[i]) {
-                tile.classList.add("correct");
-                correctCount++;
-            } else if (chosenPlayer.name.includes(guess[i])) {
-                tile.classList.add("present");
-            } else {
-                tile.classList.add("absent");
-            }
+    for (let i = 0; i < guess.length; i++) {
+        const letter = document.createElement("span");
+        letter.textContent = guess[i];
+        if (i < chosenPlayer.name.length && guess[i].toUpperCase() === chosenPlayer.name[i].toUpperCase()) {
+            letter.classList.add("correct");
+            correctCount++;
+        } else if (chosenPlayer.name.toUpperCase().includes(guess[i].toUpperCase())) {
+            letter.classList.add("present");
         } else {
-            tile.classList.add("absent");
+            letter.classList.add("absent");
         }
+        currentRow.appendChild(letter);
     }
 
     if (correctCount === chosenPlayer.name.length && guess.length === chosenPlayer.name.length) {
