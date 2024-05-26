@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createBoard() {
     const board = document.getElementById("board");
-    for (let i = 0; i < 5 * attempts; i++) {
+    for (let i = 0; i < 15 * attempts; i++) {
         const tile = document.createElement("div");
         tile.classList.add("tile");
         board.appendChild(tile);
@@ -23,31 +23,40 @@ function checkGuess() {
     const input = document.getElementById("player-input");
     const guess = input.value.toUpperCase();
     const message = document.getElementById("message");
-    
-    if (guess.length !== 5) {
-        message.textContent = "O nome deve ter 5 letras.";
+
+    if (guess.length === 0) {
+        message.textContent = "Digite o nome de um jogador.";
         return;
     }
 
     const board = document.getElementById("board");
     const tiles = board.children;
-    const currentRow = Math.floor((attempts - 6) * 5);
+    const currentRow = (6 - attempts) * 15;
 
     let correctCount = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 15; i++) {
         const tile = tiles[currentRow + i];
-        tile.textContent = guess[i];
-        if (guess[i] === chosenPlayer[i]) {
-            tile.classList.add("correct");
-            correctCount++;
-        } else if (chosenPlayer.includes(guess[i])) {
-            tile.classList.add("present");
+        if (i < guess.length) {
+            tile.textContent = guess[i];
+        } else {
+            tile.textContent = "";
+        }
+
+        if (i < chosenPlayer.length) {
+            if (guess[i] === chosenPlayer[i]) {
+                tile.classList.add("correct");
+                correctCount++;
+            } else if (chosenPlayer.includes(guess[i])) {
+                tile.classList.add("present");
+            } else {
+                tile.classList.add("absent");
+            }
         } else {
             tile.classList.add("absent");
         }
     }
 
-    if (correctCount === 5) {
+    if (correctCount === chosenPlayer.length && guess.length === chosenPlayer.length) {
         message.textContent = "Parabéns! Você acertou!";
         return;
     }
