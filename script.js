@@ -58,8 +58,9 @@ function makeGuess() {
             feedback = `Você perdeu! O jogador correto era ${playerToGuess.name}.`;
             endGame(false);
         }
+        history.innerHTML += `<div>${feedback}</div>`;
     }
-    history.innerHTML += `<div>${feedback}</div>`;
+    document.getElementById('feedback').innerHTML = feedback;
     document.getElementById('guessInput').value = '';
 }
 
@@ -80,4 +81,8 @@ function giveFeedback(guess, correctName) {
 function endGame(success) {
     document.getElementById('guessInput').disabled = true;
     document.querySelector('button').disabled = true;
+    if (!success) {
+        let history = document.getElementById('history');
+        history.innerHTML += `<div>${playerToGuess.name}</div>`;
+    }
 }
