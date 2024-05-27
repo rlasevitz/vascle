@@ -59,6 +59,8 @@ function makeGuess() {
         }
     }
     document.getElementById('feedback').innerHTML = feedback;
+    document.getElementById('history').innerHTML += `<div>${feedback}</div>`;
+    document.getElementById('guessInput').value = '';
 }
 
 function giveFeedback(guess, correctName) {
