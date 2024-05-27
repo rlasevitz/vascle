@@ -7,6 +7,9 @@ h1 {
     font-size: 3em;
     margin-top: 20px;
 }
+p {
+    font-size: 1.5em;
+}
 .input-container {
     margin-top: 20px;
 }
@@ -39,10 +42,6 @@ button {
     text-align: left;
     display: inline-block;
     width: 100%;
-}
-.bio {
-    font-size: 1.2em;
-    margin-top: 20px;
 }
 span.green {
     color: green;
