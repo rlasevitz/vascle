@@ -20,6 +20,11 @@ button {
     padding: 10px 20px;
     margin-top: 20px;
 }
+.theme {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
 .feedback {
     font-size: 1.5em;
     margin-top: 20px;
@@ -39,8 +44,4 @@ span.green {
 }
 span.black {
     color: black;
-}
-#feedback {
-    font-size: 2em;
-    font-weight: bold;
 }
