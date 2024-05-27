@@ -37,7 +37,7 @@ let attempts = 0;
 const maxAttempts = 5;
 
 window.onload = function() {
-    document.getElementById('feedback').innerText = `Tema: ${selectedTheme.theme}`;
+    document.getElementById('theme').innerText = `Tema: ${selectedTheme.theme}`;
 }
 
 function makeGuess() {
@@ -60,7 +60,6 @@ function makeGuess() {
         }
         history.innerHTML += `<div>${feedback}</div>`;
     }
-    document.getElementById('feedback').innerHTML = feedback;
     document.getElementById('guessInput').value = '';
 }
 
