@@ -31,15 +31,27 @@ const themes = [
     },
 ];
 
-// Função para obter o índice de um jogador baseado na data atual
-function getDailyPlayerIndex() {
+function hashDate() {
     const date = new Date();
-    const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-    return dayOfYear % themes.length;
+    const dateString = date.toISOString().slice(0, 10); // Formato YYYY-MM-DD
+    let hash = 0;
+    for (let i = 0; i < dateString.length; i++) {
+        const char = dateString.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+        hash |= 0; // Converte para um inteiro de 32 bits
+    }
+    return Math.abs(hash);
 }
 
-let selectedTheme = themes[getDailyPlayerIndex()];
-let playerToGuess = selectedTheme.players[Math.floor(Math.random() * selectedTheme.players.length)];
+function getDailyPlayer() {
+    const hash = hashDate();
+    const themeIndex = hash % themes.length;
+    const selectedTheme = themes[themeIndex];
+    const playerIndex = hash % selectedTheme.players.length;
+    return { theme: selectedTheme, player: selectedTheme.players[playerIndex] };
+}
+
+const { theme: selectedTheme, player: playerToGuess } = getDailyPlayer();
 let attempts = 0;
 const maxAttempts = 5;
 
