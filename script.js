@@ -48,6 +48,7 @@ function makeGuess() {
 
     if (guess.toLowerCase() === playerToGuess.name.toLowerCase()) {
         feedback = `Parabéns, você acertou! O jogador é ${playerToGuess.name}.`;
+        history.innerHTML += `<div>${feedback}</div>`;
         endGame(true);
     } else {
         feedback = giveFeedback(guess, playerToGuess.name);
