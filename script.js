@@ -38,6 +38,7 @@ const maxAttempts = 5;
 
 window.onload = function() {
     document.getElementById('theme').innerText = `Tema: ${selectedTheme.theme}`;
+    document.getElementById('attemptsLabel').innerText = "Tentativas:";
 }
 
 function makeGuess() {
@@ -46,7 +47,7 @@ function makeGuess() {
     let feedback = "";
     let history = document.getElementById('history');
 
-    if (guess.toLowerCase() === playerToGuess.name.toLowerCase()) {
+    if (normalizeString(guess) === normalizeString(playerToGuess.name)) {
         feedback = `Parabéns, você acertou! O jogador é ${playerToGuess.name}.`;
         history.innerHTML += `<div>${feedback}</div>`;
         endGame(true);
@@ -68,8 +69,8 @@ function makeGuess() {
 
 function giveFeedback(guess, correctName) {
     let feedback = "";
-    let nameLower = correctName.toLowerCase();
-    let guessLower = guess.toLowerCase();
+    let nameLower = normalizeString(correctName);
+    let guessLower = normalizeString(guess);
     for (let i = 0; i < guess.length; i++) {
         if (nameLower.includes(guessLower[i])) {
             feedback += `<span class="green">${guess[i]}</span>`;
@@ -78,6 +79,10 @@ function giveFeedback(guess, correctName) {
         }
     }
     return feedback;
+}
+
+function normalizeString(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
 function endGame(success) {
