@@ -40,6 +40,10 @@ button {
     display: inline-block;
     width: 100%;
 }
+.bio {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
 span.green {
     color: green;
 }
