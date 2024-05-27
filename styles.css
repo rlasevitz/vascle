@@ -28,13 +28,10 @@ button {
     font-weight: bold;
     margin-top: 20px;
 }
-.feedback {
+.attempts-label {
     font-size: 1.5em;
     margin-top: 20px;
-}
-.hint {
-    font-size: 1.2em;
-    margin-top: 10px;
+    font-weight: bold;
 }
 .history {
     font-size: 1.2em;
@@ -48,4 +45,8 @@ span.green {
 }
 span.black {
     color: black;
+}
+.hint {
+    font-size: 1.2em;
+    margin-top: 10px;
 }
