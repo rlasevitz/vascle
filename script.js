@@ -44,6 +44,7 @@ function makeGuess() {
     let guess = document.getElementById('guessInput').value;
     attempts++;
     let feedback = "";
+    let history = document.getElementById('history');
 
     if (guess.toLowerCase() === playerToGuess.name.toLowerCase()) {
         feedback = `Parabéns, você acertou! O jogador é ${playerToGuess.name}.`;
@@ -58,8 +59,7 @@ function makeGuess() {
             endGame(false);
         }
     }
-    document.getElementById('feedback').innerHTML = feedback;
-    document.getElementById('history').innerHTML += `<div>${feedback}</div>`;
+    history.innerHTML += `<div>${feedback}</div>`;
     document.getElementById('guessInput').value = '';
 }
 
