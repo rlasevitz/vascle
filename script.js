@@ -110,10 +110,11 @@ function endGame(success) {
     document.querySelector('button').disabled = true;
     document.getElementById('share-container').style.display = 'block';
 
+    const shareContainer = document.getElementById('share-container');
     if (success) {
-        document.getElementById('share-container').dataset.result = `Eu acertei o jogador do dia do Vascracudo hoje em ${attempts} tentativas!`;
+        shareContainer.dataset.result = `Eu acertei o jogador do dia do Vascracudo hoje em ${attempts} tentativas!`;
     } else {
-        document.getElementById('share-container').dataset.result = "Eu não acertei o jogador de hoje do Vascracudo.";
+        shareContainer.dataset.result = "Eu não acertei o jogador de hoje do Vascracudo.";
     }
 }
 
