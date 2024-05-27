@@ -31,8 +31,7 @@ const themes = [
     },
 ];
 
-function hashDate() {
-    const date = new Date();
+function hashDate(date) {
     const dateString = date.toISOString().slice(0, 10); // Formato YYYY-MM-DD
     let hash = 0;
     for (let i = 0; i < dateString.length; i++) {
@@ -44,7 +43,8 @@ function hashDate() {
 }
 
 function getDailyPlayer() {
-    const hash = hashDate();
+    const date = new Date();
+    const hash = hashDate(date);
     const themeIndex = hash % themes.length;
     const selectedTheme = themes[themeIndex];
     const playerIndex = hash % selectedTheme.players.length;
