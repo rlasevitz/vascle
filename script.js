@@ -51,6 +51,7 @@ function getDailyPlayer() {
 const { theme: selectedTheme, player: playerToGuess } = getDailyPlayer();
 let attempts = 0;
 const maxAttempts = 5;
+let gameOver = false;
 
 window.onload = function() {
     document.getElementById('theme').innerText = `Tema: ${selectedTheme.theme}`;
@@ -58,6 +59,8 @@ window.onload = function() {
 }
 
 function makeGuess() {
+    if (gameOver) return;
+
     let guess = document.getElementById('guessInput').value;
     attempts++;
     let feedback = "";
@@ -102,6 +105,12 @@ function normalizeString(str) {
 }
 
 function endGame(success) {
+    gameOver = true;
     document.getElementById('guessInput').disabled = true;
     document.querySelector('button').disabled = true;
-}
+    document.getElementById('share-container').style.display = 'block';
+
+    if (success) {
+        document.getElementById('share-container').dataset.result = `Eu acertei o jogador do dia do Vascracudo hoje em ${attempts} tentativas!`;
+    } else {
+        document.getElementById('share-container').d
