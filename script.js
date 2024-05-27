@@ -116,16 +116,18 @@ function endGame(success) {
     } else {
         shareContainer.dataset.result = "Eu não acertei o jogador de hoje do Vascracudo.";
     }
+
+    updateShareLinks();
 }
 
-function shareOnTwitter() {
+function updateShareLinks() {
     const result = document.getElementById('share-container').dataset.result;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(result)}`;
-    window.open(url, '_blank');
-}
+    const twitterShareButton = document.getElementById('twitter-share-button');
+    const facebookShareButton = document.getElementById('facebook-share-button');
 
-function shareOnFacebook() {
-    const result = document.getElementById('share-container').dataset.result;
-    const url = `https://www.facebook.com/sharer/sharer.php?u=&quote=${encodeURIComponent(result)}`;
-    window.open(url, '_blank');
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(result)}`;
+    twitterShareButton.href = twitterUrl;
+
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=&quote=${encodeURIComponent(result)}`;
+    facebookShareButton.href = facebookUrl;
 }
