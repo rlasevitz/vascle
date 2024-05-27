@@ -28,3 +28,9 @@ button {
     font-size: 1.2em;
     margin-top: 10px;
 }
+span.green {
+    color: green;
+}
+span.black {
+    color: black;
+}
