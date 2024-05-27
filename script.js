@@ -36,6 +36,11 @@ let playerToGuess = selectedTheme.players[Math.floor(Math.random() * selectedThe
 let attempts = 0;
 const maxAttempts = 5;
 
+const bios = {
+    "Léo Jardim": "Léo Jardim, nascido em 20 de março de 1995 em Ribeirão Preto, é um goleiro brasileiro que atualmente joga pelo Vasco da Gama. Iniciou sua carreira no Grêmio, onde se destacou e foi campeão da Copa do Brasil e da Libertadores. Passou por clubes como Rio Ave e Lille antes de se transferir para o Vasco em 2023. Em março de 2024, foi convocado para a Seleção Brasileira.",
+    // Adicione mini-biografias para outros jogadores
+};
+
 window.onload = function() {
     document.getElementById('theme').innerText = `Tema: ${selectedTheme.theme}`;
 }
@@ -49,6 +54,7 @@ function makeGuess() {
     if (guess.toLowerCase() === playerToGuess.name.toLowerCase()) {
         feedback = `Parabéns, você acertou! O jogador é ${playerToGuess.name}.`;
         history.innerHTML += `<div>${feedback}</div>`;
+        showBio(playerToGuess.name);
         endGame(true);
     } else {
         feedback = giveFeedback(guess, playerToGuess.name);
@@ -57,9 +63,12 @@ function makeGuess() {
         }
         if (attempts >= maxAttempts) {
             feedback = `Você perdeu! O jogador correto era ${playerToGuess.name}.`;
+            history.innerHTML += `<div>${feedback}</div>`;
+            showBio(playerToGuess.name);
             endGame(false);
+        } else {
+            history.innerHTML += `<div>${feedback}</div>`;
         }
-        history.innerHTML += `<div>${feedback}</div>`;
     }
     document.getElementById('guessInput').value = '';
 }
@@ -78,11 +87,12 @@ function giveFeedback(guess, correctName) {
     return feedback;
 }
 
+function showBio(player) {
+    const bioContainer = document.getElementById('bio');
+    bioContainer.innerText = bios[player] || "Biografia não disponível.";
+}
+
 function endGame(success) {
     document.getElementById('guessInput').disabled = true;
     document.querySelector('button').disabled = true;
-    if (!success) {
-        let history = document.getElementById('history');
-        history.innerHTML += `<div>${playerToGuess.name}</div>`;
-    }
 }
