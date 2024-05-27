@@ -28,9 +28,19 @@ button {
     font-size: 1.2em;
     margin-top: 10px;
 }
+.history {
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: left;
+    display: inline-block;
+}
 span.green {
     color: green;
 }
 span.black {
     color: black;
+}
+#feedback {
+    font-size: 2em;
+    font-weight: bold;
 }
