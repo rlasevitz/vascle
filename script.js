@@ -31,23 +31,20 @@ const themes = [
     },
 ];
 
-function hashDate(date) {
-    const dateString = date.toISOString().slice(0, 10); // Formato YYYY-MM-DD
-    let hash = 0;
-    for (let i = 0; i < dateString.length; i++) {
-        const char = dateString.charCodeAt(i);
-        hash = (hash << 5) - hash + char;
-        hash |= 0; // Converte para um inteiro de 32 bits
-    }
-    return Math.abs(hash);
+// Define a fixed epoch start date
+const EPOCH_START = new Date('2023-01-01T00:00:00Z');
+
+function daysSinceEpoch() {
+    const now = new Date();
+    const diff = now - EPOCH_START;
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
 function getDailyPlayer() {
-    const date = new Date();
-    const hash = hashDate(date);
-    const themeIndex = hash % themes.length;
+    const days = daysSinceEpoch();
+    const themeIndex = days % themes.length;
     const selectedTheme = themes[themeIndex];
-    const playerIndex = hash % selectedTheme.players.length;
+    const playerIndex = days % selectedTheme.players.length;
     return { theme: selectedTheme, player: selectedTheme.players[playerIndex] };
 }
 
