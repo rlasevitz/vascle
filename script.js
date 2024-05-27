@@ -31,7 +31,14 @@ const themes = [
     },
 ];
 
-let selectedTheme = themes[Math.floor(Math.random() * themes.length)];
+// Função para obter o índice de um jogador baseado na data atual
+function getDailyPlayerIndex() {
+    const date = new Date();
+    const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+    return dayOfYear % themes.length;
+}
+
+let selectedTheme = themes[getDailyPlayerIndex()];
 let playerToGuess = selectedTheme.players[Math.floor(Math.random() * selectedTheme.players.length)];
 let attempts = 0;
 const maxAttempts = 5;
